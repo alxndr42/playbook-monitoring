@@ -1,0 +1,16 @@
+---
+- hosts: monitoring
+  roles:
+    - role: alertmanager
+      tags: alertmanager
+      when: alertmanager
+    - role: prometheus
+      tags: prometheus
+    - role: grafana
+      tags: grafana
+  tags: monitoring
+
+- hosts: node_exporter
+  roles:
+    - role: node_exporter
+      tags: node_exporter

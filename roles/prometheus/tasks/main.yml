@@ -1,0 +1,62 @@
+---
+- name: create user
+  user:
+    name: prometheus
+    system: yes
+    create_home: no
+    shell: /bin/false
+
+- name: create folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: 0750
+  loop:
+    - "{{ prometheus_etc }}"
+    - "{{ prometheus_data }}"
+    - "{{ prometheus_path }}"
+
+- name: download release
+  get_url:
+    url: "{{ prometheus_release }}"
+    dest: "{{ prometheus_path }}/.prometheus.tgz"
+    checksum: "sha256:{{ prometheus_sha256 }}"
+  register: release
+
+- name: extract release
+  unarchive:
+    src: "{{ prometheus_path }}/.prometheus.tgz"
+    dest: "{{ prometheus_path }}"
+    extra_opts: "--strip-components=1"
+    owner: prometheus
+    group: prometheus
+    remote_src: yes
+  when: release.changed
+  notify: restart prometheus
+
+- name: check for config
+  stat: path={{ prometheus_etc }}/prometheus.yml
+  register: config
+
+- name: copy default config
+  copy:
+    src: "{{ prometheus_path }}/prometheus.yml"
+    dest: "{{ prometheus_etc }}"
+    owner: prometheus
+    group: prometheus
+    remote_src: yes
+  when: not config.stat.exists
+
+- name: template service
+  template:
+    src: prometheus.service
+    dest: /etc/systemd/system/
+  notify: restart prometheus
+
+- name: enable service
+  systemd:
+    name: prometheus
+    enabled: yes
+    daemon_reload: yes

@@ -1,0 +1,62 @@
+---
+- name: create user
+  user:
+    name: alertmanager
+    system: yes
+    create_home: no
+    shell: /bin/false
+
+- name: create folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: alertmanager
+    group: alertmanager
+    mode: 0750
+  loop:
+    - "{{ alertmanager_etc }}"
+    - "{{ alertmanager_data }}"
+    - "{{ alertmanager_path }}"
+
+- name: download release
+  get_url:
+    url: "{{ alertmanager_release }}"
+    dest: "{{ alertmanager_path }}/.alertmanager.tgz"
+    checksum: "sha256:{{ alertmanager_sha256 }}"
+  register: release
+
+- name: extract release
+  unarchive:
+    src: "{{ alertmanager_path }}/.alertmanager.tgz"
+    dest: "{{ alertmanager_path }}"
+    extra_opts: "--strip-components=1"
+    owner: alertmanager
+    group: alertmanager
+    remote_src: yes
+  when: release.changed
+  notify: restart alertmanager
+
+- name: check for config
+  stat: path={{ alertmanager_etc }}/alertmanager.yml
+  register: config
+
+- name: copy default config
+  copy:
+    src: "{{ alertmanager_path }}/alertmanager.yml"
+    dest: "{{ alertmanager_etc }}"
+    owner: alertmanager
+    group: alertmanager
+    remote_src: yes
+  when: not config.stat.exists
+
+- name: template service
+  template:
+    src: alertmanager.service
+    dest: /etc/systemd/system/
+  notify: restart alertmanager
+
+- name: enable service
+  systemd:
+    name: alertmanager
+    enabled: yes
+    daemon_reload: yes

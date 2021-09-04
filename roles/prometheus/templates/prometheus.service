@@ -1,0 +1,22 @@
+[Unit]
+Description=Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=prometheus
+Group=prometheus
+ExecStart={{ prometheus_path }}/prometheus \
+  --config.file={{ prometheus_etc }}/prometheus.yml \
+  --storage.tsdb.path={{ prometheus_data }} \
+  --web.console.templates={{ prometheus_path }}/consoles \
+  --web.console.libraries={{ prometheus_path }}/console_libraries \
+  --web.listen-address={{ prometheus_listen }} \
+  --web.external-url={{ prometheus_url }} \
+  --web.enable-admin-api
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

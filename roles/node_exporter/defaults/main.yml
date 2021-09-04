@@ -1,0 +1,7 @@
+---
+node_exporter_release: https://github.com/prometheus/node_exporter/releases/download/v1.2.2/node_exporter-1.2.2.linux-amd64.tar.gz
+node_exporter_sha256: "344bd4c0bbd66ff78f14486ec48b89c248139cdd485e992583ea30e89e0e5390"
+node_exporter_path: /opt/node_exporter
+node_exporter_listen: 127.0.0.1:9100
+node_exporter_options: []
+node_exporter_user: nobody
