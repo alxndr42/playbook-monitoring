@@ -4,5 +4,6 @@ prometheus_sha256: "51500b603a69cf1ea764b59a7456fe0c4164c4574714aca2a2b6b3d4da89
 prometheus_etc: /etc/prometheus
 prometheus_data: /var/lib/prometheus
 prometheus_path: /opt/prometheus
+prometheus_retention_time: "15d"
 prometheus_listen: 127.0.0.1:9090
 prometheus_url: http://127.0.0.1:9090
