@@ -8,9 +8,8 @@
       tags: prometheus
     - role: grafana
       tags: grafana
-  tags: monitoring
 
-- hosts: node_exporter
+- hosts: monitoring_targets
   roles:
-    - role: node_exporter
-      tags: node_exporter
+    - role: node-exporter
+      tags: node-exporter
