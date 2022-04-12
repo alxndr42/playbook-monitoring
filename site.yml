@@ -1,4 +1,13 @@
 ---
+- hosts: all
+  roles:
+    - role: nginx
+      tags: nginx
+      when: nginx
+    - role: certbot
+      tags: certbot
+      when: certbot
+
 - hosts: monitoring
   roles:
     - role: alertmanager

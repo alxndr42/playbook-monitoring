@@ -9,6 +9,9 @@ must be customized locally.
 Hosts in the `monitoring_targets` group are configured with a Prometheus
 [node_exporter][].
 
+All hosts are configured with nginx and Certbot, unless `nginx` and `certbot`
+are set to `false.` The Certbot role requires `certbot_email` to be defined.
+
 Please see the individual roles for more information and defaults.
 
 [alertmanager]: https://prometheus.io/docs/alerting/latest/alertmanager/
