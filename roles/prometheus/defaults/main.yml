@@ -1,6 +1,6 @@
 ---
-prometheus_release: https://github.com/prometheus/prometheus/releases/download/v2.32.1/prometheus-2.32.1.linux-amd64.tar.gz
-prometheus_sha256: "f08e96d73330a9ee7e6922a9f5b72ea188988a083bbfa9932359339fcf504a74"
+prometheus_release: https://github.com/prometheus/prometheus/releases/download/v2.34.0/prometheus-2.34.0.linux-amd64.tar.gz
+prometheus_sha256: "9ec560940bf53361dd9d3a867d51ceb96f3854ae12f5e532b7d3f60c27f364d0"
 prometheus_etc: /etc/prometheus
 prometheus_data: /var/lib/prometheus
 prometheus_path: /opt/prometheus
