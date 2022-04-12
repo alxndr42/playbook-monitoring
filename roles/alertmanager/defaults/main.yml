@@ -1,7 +1,7 @@
 ---
 alertmanager: true
-alertmanager_release: https://github.com/prometheus/alertmanager/releases/download/v0.23.0/alertmanager-0.23.0.linux-amd64.tar.gz
-alertmanager_sha256: "77793c4d9bb92be98f7525f8bc50cb8adb8c5de2e944d5500e90ab13918771fc"
+alertmanager_release: https://github.com/prometheus/alertmanager/releases/download/v0.24.0/alertmanager-0.24.0.linux-amd64.tar.gz
+alertmanager_sha256: "6fa982232ae7be5524f5b3cd4e90b7c6a75086368200c917644eaa3e806555dc"
 alertmanager_etc: /etc/alertmanager
 alertmanager_data: /var/lib/alertmanager
 alertmanager_path: /opt/alertmanager
