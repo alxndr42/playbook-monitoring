@@ -1,0 +1,9 @@
+---
+- name: template per-host targets
+  template:
+    src: targets.json
+    dest: "{{ prometheus_etc }}/targets/{{ hostname }}-{{ item.key }}.json"
+  vars:
+    targets: "{{ item.value }}"
+  loop: "{{ hostvars[hostname].prometheus_targets | dict2items }}"
+  when: hostvars[hostname].prometheus_targets is defined

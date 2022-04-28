@@ -1,0 +1,15 @@
+---
+- name: template prometheus site
+  template:
+    src: prometheus
+    dest: /etc/nginx/sites-available/
+  notify: reload nginx
+  when: nginx_prometheus_hostname is defined
+
+- name: enable prometheus site
+  file:
+    path: /etc/nginx/sites-enabled/prometheus
+    src: /etc/nginx/sites-available/prometheus
+    state: link
+  notify: reload nginx
+  when: nginx_prometheus_hostname is defined

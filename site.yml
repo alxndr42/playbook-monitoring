@@ -22,3 +22,5 @@
   roles:
     - role: node-exporter
       tags: node-exporter
+    - role: nginx-prometheus
+      tags: nginx-prometheus

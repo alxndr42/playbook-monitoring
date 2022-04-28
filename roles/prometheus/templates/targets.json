@@ -1,0 +1,11 @@
+[{
+  "targets": [
+{% for t in targets %}
+{% if not loop.last %}
+    "{{ t }}",
+{% else %}
+    "{{ t }}"
+{% endif %}
+{% endfor %}
+  ]
+}]

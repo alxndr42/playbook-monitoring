@@ -15,6 +15,7 @@
     mode: 0750
   loop:
     - "{{ prometheus_etc }}"
+    - "{{ prometheus_etc }}/targets"
     - "{{ prometheus_data }}"
     - "{{ prometheus_path }}"
 
@@ -35,6 +36,12 @@
     remote_src: yes
   when: release.changed
   notify: restart prometheus
+
+- name: template targets
+  include_tasks: targets.yml
+  loop: "{{ groups['monitoring_targets'] }}"
+  loop_control:
+    loop_var: hostname
 
 - name: check for config
   stat: path={{ prometheus_etc }}/prometheus.yml
