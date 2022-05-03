@@ -1,4 +1,13 @@
 ---
+- include_tasks: htpasswd.yml
+  vars:
+    username: "{{ hostvars[hostname].prometheus_username }}"
+    password: "{{ hostvars[hostname].prometheus_password }}"
+  loop: "{{ groups['monitoring'] }}"
+  loop_control:
+    loop_var: hostname
+  when: hostvars[hostname].prometheus_username is defined
+
 - name: template prometheus site
   template:
     src: prometheus

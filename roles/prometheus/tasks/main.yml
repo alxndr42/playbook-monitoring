@@ -15,6 +15,7 @@
     mode: 0750
   loop:
     - "{{ prometheus_etc }}"
+    - "{{ prometheus_etc }}/auth"
     - "{{ prometheus_etc }}/targets"
     - "{{ prometheus_data }}"
     - "{{ prometheus_path }}"
@@ -36,6 +37,11 @@
     remote_src: yes
   when: release.changed
   notify: restart prometheus
+
+- include_tasks: password.yml
+  vars:
+    username: "{{ inventory_hostname }}"
+    password_file: "{{ prometheus_etc }}/auth/{{ username }}"
 
 - name: template targets
   include_tasks: targets.yml
