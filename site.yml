@@ -15,12 +15,16 @@
       when: alertmanager
     - role: prometheus
       tags: prometheus
+      when: prometheus
     - role: grafana
       tags: grafana
+      when: grafana
 
 - hosts: monitoring_targets
   roles:
     - role: node-exporter
       tags: node-exporter
+      when: node_exporter
     - role: nginx-prometheus
       tags: nginx-prometheus
+      when: nginx_prometheus
