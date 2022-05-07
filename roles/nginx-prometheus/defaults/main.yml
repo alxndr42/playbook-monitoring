@@ -1,2 +1,3 @@
 ---
 nginx_prometheus: true
+nginx_prometheus_exporter_addr: "127.0.0.1"
