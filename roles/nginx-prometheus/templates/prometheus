@@ -15,6 +15,6 @@ server {
 
         proxy_set_header Host $host;
         proxy_set_header Proxy "";
-        proxy_pass http://{{ nginx_prometheus_exporter_addr }}:$server_port;
+        proxy_pass http://{{ nginx_prometheus_exporter_address }}:$server_port;
     }
 }
