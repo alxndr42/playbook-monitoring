@@ -1,0 +1,4 @@
+---
+- src: alxndr42.nginx
+  name: nginx
+  version: v1.4.0

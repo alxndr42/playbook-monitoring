@@ -19,6 +19,19 @@ Please see the individual roles for more information and defaults.
 [node_exporter]: https://github.com/prometheus/node_exporter
 [prometheus]: https://prometheus.io/
 
+## Requirements
+
+- Debian-based system with systemd
+- Dependencies installed
+
+```bash
+# Install dependencies via Ansible Galaxy
+ansible-galaxy install -r requirements-galaxy.yml
+
+# Install dependencies via GitHub
+ansible-galaxy install -r requirements-github.yml
+```
+
 ## License
 
-GPLv3
+GNU General Public License v3 or later (GPLv3+)

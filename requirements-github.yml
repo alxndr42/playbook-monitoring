@@ -1,0 +1,4 @@
+---
+- src: https://github.com/alxndr42/ansible-nginx.git
+  name: nginx
+  version: v1.4.0
