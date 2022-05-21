@@ -12,7 +12,11 @@ Hosts in the `monitoring_targets` group are configured with a Prometheus
 All hosts are configured with nginx and Certbot, unless `nginx` and `certbot`
 are set to `false.` The Certbot role requires `certbot_email` to be defined.
 
-Please see the individual roles for more information and defaults.
+Please see the individual roles for more information and default values.
+
+External collections/roles:
+
+- [commons](https://github.com/alxndr42/ansible-commons)
 
 [alertmanager]: https://prometheus.io/docs/alerting/latest/alertmanager/
 [grafana]: https://grafana.com/

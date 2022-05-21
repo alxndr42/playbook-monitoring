@@ -1,10 +1,10 @@
 ---
 - hosts: all
   roles:
-    - role: nginx
+    - role: alxndr42.commons.nginx
       tags: nginx
       when: nginx
-    - role: certbot
+    - role: alxndr42.commons.certbot
       tags: certbot
       when: certbot
 
