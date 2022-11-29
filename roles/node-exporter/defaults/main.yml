@@ -1,7 +1,7 @@
 ---
 node_exporter: true
-node_exporter_release: https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-1.4.0.linux-amd64.tar.gz
-node_exporter_sha256: "e77ff1b0a824a4e13f82a35d98595fe526849c09e3480d0789a56b72242d2abc"
+node_exporter_release: https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
+node_exporter_sha256: "af999fd31ab54ed3a34b9f0b10c28e9acee9ef5ac5a5d5edfdde85437db7acbb"
 node_exporter_path: /opt/node_exporter
 node_exporter_listen: 127.0.0.1:9100
 node_exporter_options: []
