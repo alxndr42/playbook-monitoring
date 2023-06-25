@@ -45,7 +45,7 @@
 
 - name: template targets
   include_tasks: targets.yml
-  loop: "{{ groups['monitoring_targets'] }}"
+  loop: "{{ groups.get('monitoring_targets', []) }}"
   loop_control:
     loop_var: hostname
 
