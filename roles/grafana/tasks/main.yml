@@ -1,12 +1,35 @@
+# https://wiki.debian.org/DebianRepository/UseThirdParty
+
 ---
-- name: add signing key
+- name: remove old signing keys
   apt_key:
     url: https://packages.grafana.com/gpg.key
-    id: "0x9E439B102CF3C0C6"
+    id: "{{ item }}"
+    state: absent
+  with_items:
+    - 4E40DDF6D76E284A4A6780E48C8C34C524098CB6
+    - 0E22EB88E39E12277A7760AE9E439B102CF3C0C6
+
+- name: create signing key directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '755'
+
+- name: download signing key
+  get_url:
+    url: https://apt.grafana.com/gpg.key
+    dest: /etc/apt/keyrings/grafana.key
+    checksum: sha256:58052c148058ace26dbd01ce057afa5709fb9d39c8a8ab16800be3f42fc02ab2
+
+- name: remove old repository
+  apt_repository:
+    repo: deb https://packages.grafana.com/oss/deb stable main
+    state: absent
 
 - name: add repository
   apt_repository:
-    repo: deb https://packages.grafana.com/oss/deb stable main
+    repo: deb [signed-by=/etc/apt/keyrings/grafana.key] https://apt.grafana.com stable main
 
 - name: install packages
   apt:
