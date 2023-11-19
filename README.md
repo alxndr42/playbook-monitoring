@@ -16,7 +16,7 @@ Please see the individual roles for more information and default values.
 
 External collections/roles:
 
-- [commons](https://github.com/alxndr42/ansible-commons)
+- [commons](https://codeberg.org/alxndr42/ansible-commons)
 
 [alertmanager]: https://prometheus.io/docs/alerting/latest/alertmanager/
 [grafana]: https://grafana.com/
@@ -29,6 +29,9 @@ External collections/roles:
 - Dependencies installed
 
 ```bash
+# Install dependencies via Codeberg
+ansible-galaxy install -r requirements-codeberg.yml
+
 # Install dependencies via GitHub
 ansible-galaxy install -r requirements-github.yml
 ```
