@@ -1,0 +1,45 @@
+---
+- name: create user
+  ansible.builtin.user:
+    name: pushgateway
+    system: yes
+    create_home: no
+    shell: /bin/false
+
+- name: create folder
+  ansible.builtin.file:
+    path: "{{ pushgateway_path }}"
+    state: directory
+    owner: pushgateway
+    group: pushgateway
+    mode: 0750
+
+- name: download release
+  ansible.builtin.get_url:
+    url: "{{ pushgateway_release }}"
+    dest: "{{ pushgateway_path }}/.pushgateway.tgz"
+    checksum: "{{ pushgateway_checksum }}"
+  register: release
+
+- name: extract release
+  ansible.builtin.unarchive:
+    src: "{{ pushgateway_path }}/.pushgateway.tgz"
+    dest: "{{ pushgateway_path }}"
+    extra_opts: "--strip-components=1"
+    owner: pushgateway
+    group: pushgateway
+    remote_src: yes
+  when: release.changed
+  notify: restart pushgateway
+
+- name: template service
+  ansible.builtin.template:
+    src: pushgateway.service
+    dest: /etc/systemd/system/
+  notify: restart pushgateway
+
+- name: enable service
+  ansible.builtin.systemd:
+    name: pushgateway
+    enabled: yes
+    daemon_reload: yes

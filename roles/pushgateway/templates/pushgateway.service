@@ -1,0 +1,16 @@
+[Unit]
+Description=Prometheus Pushgateway
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=pushgateway
+Group=pushgateway
+ExecStart={{ pushgateway_path }}/pushgateway \
+  --web.listen-address={{ pushgateway_listen }} \
+  --web.external-url={{ pushgateway_url }}
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

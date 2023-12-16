@@ -1,0 +1,7 @@
+---
+pushgateway: false
+pushgateway_release: https://github.com/prometheus/pushgateway/releases/download/v1.6.2/pushgateway-1.6.2.linux-amd64.tar.gz
+pushgateway_checksum: sha256:1622ef23cb7f9120ee29e3469d0d4ea513118e53e7a713c129f65ee93ffb0cd1
+pushgateway_path: /opt/pushgateway
+pushgateway_listen: 127.0.0.1:9091
+pushgateway_url: http://127.0.0.1:9091

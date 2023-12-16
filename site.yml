@@ -13,6 +13,9 @@
     - role: alertmanager
       tags: alertmanager
       when: alertmanager
+    - role: pushgateway
+      tags: pushgateway
+      when: pushgateway
     - role: prometheus
       tags: prometheus
       when: prometheus
