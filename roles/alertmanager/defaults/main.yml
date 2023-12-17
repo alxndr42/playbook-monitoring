@@ -1,9 +1,0 @@
----
-alertmanager: true
-alertmanager_release: https://github.com/prometheus/alertmanager/releases/download/v0.26.0/alertmanager-0.26.0.linux-amd64.tar.gz
-alertmanager_sha256: "abd73e2ee6bf67d3888699660abbecba7b076bf1f9459a3a8999d493b149ffa6"
-alertmanager_etc: /etc/alertmanager
-alertmanager_data: /var/lib/alertmanager
-alertmanager_path: /opt/alertmanager
-alertmanager_listen: 127.0.0.1:9093
-alertmanager_url: http://127.0.0.1:9093

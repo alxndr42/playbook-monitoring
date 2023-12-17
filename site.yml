@@ -10,9 +10,6 @@
 
 - hosts: monitoring
   roles:
-    - role: alertmanager
-      tags: alertmanager
-      when: alertmanager
     - role: pushgateway
       tags: pushgateway
       when: pushgateway
