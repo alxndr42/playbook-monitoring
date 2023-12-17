@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: [monitoring, monitoring_targets]
   roles:
     - role: alxndr42.commons.nginx
       tags: nginx
