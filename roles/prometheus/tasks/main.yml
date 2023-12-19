@@ -24,7 +24,7 @@
   get_url:
     url: "{{ prometheus_release }}"
     dest: "{{ prometheus_path }}/.prometheus.tgz"
-    checksum: "sha256:{{ prometheus_sha256 }}"
+    checksum: "{{ prometheus_checksum }}"
   register: release
 
 - name: extract release
