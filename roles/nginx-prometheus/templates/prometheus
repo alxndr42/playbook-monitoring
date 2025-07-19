@@ -1,15 +1,15 @@
 server {
     server_name {{ nginx_prometheus_hostname }};
 {% if nginx_prometheus_tls_crt is defined %}
-    ssl_certificate {{ nginx_prometheus_tls_crt }}
+    ssl_certificate {{ nginx_prometheus_tls_crt }};
 {% else %}
     ssl_certificate /etc/letsencrypt/live/{{ nginx_prometheus_hostname }}/fullchain.pem;
-{%endif %}
+{% endif %}
 {% if nginx_prometheus_tls_key is defined %}
-    ssl_certificate_key {{ nginx_prometheus_tls_key }}
+    ssl_certificate_key {{ nginx_prometheus_tls_key }};
 {% else %}
     ssl_certificate_key /etc/letsencrypt/live/{{ nginx_prometheus_hostname }}/privkey.pem;
-{%endif %}
+{% endif %}
 
 {% for addr in nginx_prometheus_addresses %}
 {% for port in nginx_prometheus_ports %}
