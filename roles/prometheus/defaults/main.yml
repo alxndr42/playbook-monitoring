@@ -1,8 +1,8 @@
 ---
 prometheus: true
 # LTS Release Cycle: https://prometheus.io/docs/introduction/release-cycle/
-prometheus_release: https://github.com/prometheus/prometheus/releases/download/v2.53.5/prometheus-2.53.5.linux-amd64.tar.gz
-prometheus_checksum: sha256:456eb31530484d181e860e329fa0c6628e79eb388fac670cdeb4fa5d57c74ed9
+prometheus_release: https://github.com/prometheus/prometheus/releases/download/v3.5.0/prometheus-3.5.0.linux-amd64.tar.gz
+prometheus_checksum: sha256:e811827af26d822afb09a4f28314f61b618b12cff5369835a67f674d8b46f39a
 prometheus_etc: /etc/prometheus
 prometheus_data: /var/lib/prometheus
 prometheus_path: /opt/prometheus
